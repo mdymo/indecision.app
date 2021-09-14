@@ -1,30 +1,32 @@
 import React from "react";
 import './Log.css';
-import '../SignIn/SignIn';
-import SignIn from "../SignIn/SignIn";
+import Form from '../Form/Form';
 
 class Log extends React.Component {
-
-  showSignIn(event){
-    event.preventDefaul();
-    
-
-    return(
-      <SignIn />
-    )
+  constructor(props){
+    super(props);
+    this.showSignIn = this.showSignIn.bind(this);
+    this.state = {
+      showWindow: false,
+    }
   }
+
+  showSignIn(e){
+    e.preventDefault();
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    if(emailInput && emailInput.value && passwordInput && passwordInput.value){
+      this.setState(() => ({ showWindow: true }))
+    } else {
+      this.setState(() => ({ showWindow: false }))
+      alert('niepoprawne dane')
+    }
+  }
+
 
   render(){
     return (
-      <form className='login'>
-        <div className="mb-3">
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='E-mail' />
-        </div>
-        <div className="mb-3">
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Hasło'/>
-        </div>
-        <button type="submit" className="btn btn-outline-dark" onClick={this.showSignIn}>Zaloguj</button>
-      </form>
+      <Form showSignIn={this.showSignIn} showWindow={this.state.showWindow}/>
     );
   }
 }

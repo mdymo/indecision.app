@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
-import App from './Components/App/App';
+import AppRouter from './routers/AppRouter';
 import reportWebVitals from './reportWebVitals';
 import './styles/global.css';
+// import './Firebase/Firebase';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(<AppRouter />, document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
